@@ -11,3 +11,9 @@ $ git subtree push --prefix backend/ heroku master
 ```
 $ git push heroku master
 ```
+
+## create-react-app パッケージインストール
+
+```
+$ npm install --save --legacy-peer-deps パッケージ名
+```
