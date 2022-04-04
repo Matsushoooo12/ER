@@ -4,9 +4,10 @@ import { Post } from "../../types/post";
 import NewPost from "../form/NewPost";
 import DetailPost from "../organisms/DetailPost";
 
-function Home() {
+const Home: React.FC = () => {
   const [posts, setPosts] = React.useState<Post[]>([]);
   const [post, setPost] = React.useState<Post>();
+  const [postNumber, setPostNumber] = React.useState<number>(0);
 
   const handleGetDetailPost = async (id: number) => {
     try {
@@ -19,6 +20,7 @@ function Home() {
   };
 
   const onClickPost = (id: number) => {
+    setPostNumber(id);
     handleGetDetailPost(id);
   };
 
@@ -40,7 +42,15 @@ function Home() {
       <div style={{ width: "300px", backgroundColor: "yellowgreen" }}>
         <NewPost handleGetAllPosts={handleGetAllPosts} />
         {posts.map((post) => (
-          <div key={post.id} onClick={() => onClickPost(post.id)}>
+          <div
+            key={post.id}
+            onClick={() => onClickPost(post.id)}
+            style={
+              post.id === postNumber
+                ? { backgroundColor: "white" }
+                : { backgroundColor: "" }
+            }
+          >
             <p>{post.title}</p>
             <p>{post.createdAt}</p>
           </div>
@@ -49,6 +59,6 @@ function Home() {
       <DetailPost post={post} />
     </div>
   );
-}
+};
 
 export default Home;
