@@ -3,9 +3,15 @@ import { createPost } from "../../api/post";
 
 type Props = {
   handleGetAllPosts: () => Promise<void>;
+  setPostNumber: React.Dispatch<React.SetStateAction<number>>;
+  handleGetDetailPost: (id: number) => Promise<void>;
 };
 
-const NewPost: React.FC<Props> = ({ handleGetAllPosts }) => {
+const NewPost: React.FC<Props> = ({
+  handleGetAllPosts,
+  setPostNumber,
+  handleGetDetailPost,
+}) => {
   const [value, setValue] = React.useState({
     title: "",
   });
@@ -22,6 +28,8 @@ const NewPost: React.FC<Props> = ({ handleGetAllPosts }) => {
     try {
       const res = await createPost(value);
       console.log(res.data);
+      setPostNumber(res.data.id);
+      handleGetDetailPost(res.data.id);
       handleGetAllPosts();
     } catch (e) {
       console.log(e);

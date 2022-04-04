@@ -40,7 +40,11 @@ const Home: React.FC = () => {
   return (
     <div style={{ display: "flex", width: "100%", height: "100vh" }}>
       <div style={{ width: "300px", backgroundColor: "yellowgreen" }}>
-        <NewPost handleGetAllPosts={handleGetAllPosts} />
+        <NewPost
+          setPostNumber={setPostNumber}
+          handleGetAllPosts={handleGetAllPosts}
+          handleGetDetailPost={handleGetDetailPost}
+        />
         {posts.map((post) => (
           <div
             key={post.id}
