@@ -6,6 +6,12 @@
 $ git subtree push --prefix backend/ heroku master
 ```
 
+## Rails heroku の migration
+
+```
+$ heroku run rails db:migrate
+```
+
 ## React の Netlify デプロイ方法
 
 ```
